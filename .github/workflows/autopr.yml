@@ -1,0 +1,22 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+*" # Push events to matching v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: create PR
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git checkout -b update/${{ vars.GITHUB_REF_NAME }}
+          date > generated.txt
+          git add .
+          git commit -m "Bump up to finschia/${{ vars.GITHUB_REF_NAME }}"
+          git push --set-upstream origin
