@@ -8,7 +8,8 @@
   "scripts": {
     "build": "ncc build src/main.ts",
     "start": "ts-node src/main.ts",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "gen-appjwt": "ts-node src/jwt.ts"
   },
   "devDependencies": {
     "@types/node": "^18.15.6",
@@ -24,6 +25,7 @@
   "dependencies": {
     "@octokit/auth-app": "^4.0.9",
     "@octokit/request-error": "^3.0.3",
-    "@octokit/rest": "^19.0.7"
+    "@octokit/rest": "^19.0.7",
+    "jsonwebtoken": "^9.0.0"
   }
 }

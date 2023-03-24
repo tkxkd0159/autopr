@@ -1,6 +1,5 @@
 import { Octokit } from "@octokit/rest";
 import { RequestError } from "@octokit/request-error";
-import { createAppAuth } from "@octokit/auth-app";
 import * as dotenv from 'dotenv'
 dotenv.config()
 import {prompt} from "./lib"
@@ -19,12 +18,7 @@ void (async function() {
         }
 
         const client = new Octokit({
-            authStrategy: createAppAuth,
-            auth: {
-                appId: 309530,
-                privateKey: process.env.AUTOPR_APP_TOKEN,
-                installationId: 35627228,
-            },
+            auth: process.env.AUTOPR_APP_INSTALL_GHTOKEN,
             baseUrl: "https://api.github.com",
         });
 
