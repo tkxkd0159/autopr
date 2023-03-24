@@ -31,14 +31,6 @@ void (function() {
         // const prs = await client.rest.pulls.create()
         // console.log(prs)
 
-        // const prs = await client.rest.pulls.list(
-        //     {
-        //         owner: "BlockchainLab",
-        //         repo: "lbm-proxy",
-        //         state: "all",
-        //     }
-        // )
-        // console.log(prs)
     } catch (e) {
         if (e instanceof RequestError) {
             console.error(`${e.status} ${e.name}: ${e.message}\n${JSON.stringify(e.response)}`)
