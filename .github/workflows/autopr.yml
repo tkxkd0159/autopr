@@ -35,8 +35,8 @@ jobs:
           node-version: 18
       - name: create PR
         run: |
-          npm install @octokit/@octokit/rest @octokit/auth-app
-          node .github/actitons/autopr.js
+          npm install @octokit/rest @octokit/auth-app
+          node .github/actions/autopr.js
         env:
           AUTOPR_APP_TOKEN: ${{ secrets.AUTOPR_APP_TOKEN }}
           OWNER: tkxkd0159
