@@ -7,16 +7,31 @@ on:
 
 jobs:
   build:
+    env:
+      HEAD_BRANCH: update/${{ vars.GITHUB_REF_NAME }}
+      TITLE: "Bump up to finschia/${{ vars.GITHUB_REF_NAME }}"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: create PR
+      - name: create & push branch
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git checkout -b update/${{ vars.GITHUB_REF_NAME }}
+          git checkout -b $HEAD_BRANCH
           date > generated.txt
           git add .
-          git commit -m "Bump up to finschia/${{ vars.GITHUB_REF_NAME }}"
+          git commit -m $TITLE
           git push --set-upstream origin
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: create PR
+        run: |
+          npm install @octokit/@octokit/rest @octokit/auth-app
+          node .github/actitons/autopr.js
+        env:
+          AUTOPR_APP_TOKEN: ${{ secrets.AUTOPR_APP_TOKEN }}
+          OWNER: tkxkd0159
+          REPO: autopr
+          TITLE: ${{ env.TITLE }}
+          HEAD: ${{ env.HEAD_BRANCH }}

@@ -28,7 +28,7 @@ void (async function() {
             baseUrl: "https://api.github.com",
         });
 
-        await client.rest.pulls.create(
+        const { data } = await client.rest.pulls.create(
             {
                 owner: "tkxkd0159",
                 repo: "autopr",
@@ -42,6 +42,7 @@ void (async function() {
                 },"<!--- Describe your changes in detail -->\r\n"+"I am msg\r\n")
             }
         )
+        console.log("PR created: %s", data.html_url);
 
     } catch (e) {
         if (e instanceof RequestError) {
