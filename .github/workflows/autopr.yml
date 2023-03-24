@@ -8,8 +8,8 @@ on:
 jobs:
   build:
     env:
-      HEAD_BRANCH: update/${{ vars.GITHUB_REF_NAME }}
-      TITLE: "Bump up to finschia/${{ vars.GITHUB_REF_NAME }}"
+      HEAD_BRANCH: update/$GITHUB_REF_NAME
+      TITLE: "Bump up to finschia/$GITHUB_REF_NAME"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
