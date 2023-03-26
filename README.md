@@ -2,6 +2,7 @@
   * fork by github -> upstream :heavy_check_mark:
   * fork by clone -> upstream :x:
 
+> Github API BaseURL for normal : `https://api.github.com`  
 > Github API BaseURL for Enterprise : `https://<git_enterprise_url>/api/v3`
 
 # Generating a user access token for a GitHub App
